@@ -18,3 +18,7 @@ No because the data change operation has already been applied to the database (a
 - Q4. Does throwing an exception in a Post Operation plugin prevent the data change operation?
 
 Yes because although the POST plugin cannot participate in the data change operation transaction.  That same transaction hasn't yet been commited to the database.  Any exception thrown in the plugin execution pipeline causes the transaction to rollback.
+
+- Q5. Does a Post Image contain the latest target attribute values?  For example, if the firstname attribute is updated on the contact record, will the updated value be available in the Post Image or will it still hold the original value as it would be in a Pre Image?
+
+Post Image contains the final value committed to the database.  That is to say that even if the value is updated in a Pre Operation plugin this value will be seen in the Post Image.
